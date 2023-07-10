@@ -22,7 +22,7 @@ services:
       - database
     environment:
       - ConnectionStrings__DefaultConnection=Server=database;Database=TaskMaster;User Id=sa;Password=New_Password123
-      - DOTNET_URLS=http://+:5000  # Добавленная переменная окружения
+      - DOTNET_URLS=http://+:5000
 
 volumes:
   dbdata:
