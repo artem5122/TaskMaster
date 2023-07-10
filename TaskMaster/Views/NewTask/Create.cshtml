@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Features
+@model NewTaskViewModel
+<title>Разместить задание</title>
+
+<h2>Разместить задание</h2>
+
+@using (Html.BeginForm("Publish", "NewTask", FormMethod.Post))
+{
+    <div class="form-group">
+        <label asp-for="Task.Title">Название</label>
+        <input name="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Task.Description">Описание</label>
+        <textarea name="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Task.DeadlineDate">Срок выполнения</label>
+        <input name="DeadlineDate" type="date" class="form-control" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Task.Price">Цена</label>
+        <input name="Price" type="number" class="form-control" />
+    </div>
+
+    <input type="hidden" name="Author" value="@Context.Session.GetString("Username")" />
+    <center>
+    <button type="submit" style="margin-top: 15px" class="btn btn-success navbar-brand-animate navbar-brand-hover-animate">Опубликовать задание</button>
+    </center>
+}

@@ -1,0 +1,121 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Features
+@model TaskDetailsAndSolutionsViewModel
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+    .solution-details {
+        display: none;
+    }
+</style>
+
+<div>
+    <h2>Подробная информация о задании</h2>
+    <p><strong>Название:</strong> @Model.Task.Title</p>
+    <p><strong>Описание:</strong> @Model.Task.Description</p>
+    <p><strong>Дата создания:</strong> @Model.Task.CreatedDate.ToString()</p>
+    <p><strong>Дата дедлайна:</strong> @Model.Task.DeadlineDate.ToString()</p>
+    <p><strong>Цена:</strong> @Model.Task.Price.ToString()</p>
+    <p><strong>Автор задания:</strong> @Model.Task.TaskAuthor.Name</p>
+</div>
+
+@if (Model.Task.DeadlineDate < DateTime.Now)
+{
+    <p>Срок выполнения этого задания уже истёк. Вы не можете прикрепить решения.</p>
+}
+else if (Context.Session.GetInt32("IsAuthenticated") == 1)
+{
+    @if (Context.Session.GetInt32("IsAdmin") != 1)
+    {
+        <div>
+            <h3>Отправить решение на проверку</h3>
+            <form action="@Url.Action("SubmitSolution", "Task")" method="post">
+                <input type="hidden" name="taskId" value="@Model.Task.Id" />
+                <input type="hidden" name="username" value="@Context.Session.GetString("Username")" />
+                <label for="solutionText">Ссылка на решение:</label>
+                <input type="text" name="solutionText" id="solutionText" required />
+                <button type="submit">Отправить решение на проверку</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <p>Вы являетесь администратором и не можете отправлять решения на проверку.</p>
+    }
+}
+else
+{
+    <p>Пользователь не авторизован. Пожалуйста, выполните вход, чтобы оставлять решения и выполнять другие действия.</p>
+}
+
+<div>
+    <h3>Решения</h3>
+    @if (Model.TaskSolutions.Any())
+    {
+        <ul>
+            @foreach (var solution in Model.TaskSolutions)
+            {
+                <li>
+                    <a href="#" class="solution-author">
+                        @solution.Author.Name
+                    </a>
+                    <div class="solution-details">
+                        <p><strong>Дата решения:</strong> @solution.SolutionDate.ToString()</p>
+                        <p><strong>Решение:</strong> @solution.SolutionText</p>
+                        <p><strong>Автор решения:</strong> @solution.Author.Name</p>
+                        <p><strong>Заметки администратора:</strong> @solution.AdminNotes</p>
+                        @if (Context.Session.GetInt32("IsAdmin") == 1)
+                        {
+                            <p><strong>Оценка:</strong> @GetAcceptedStatus(solution.IsAccepted)</p>
+                            <form action="@Url.Action("RateSolution", "Task")" method="post">
+                                <input type="hidden" name="solutionId" value="@solution.Id" />
+                                <input type="hidden" name="taskId" value="@Model.Task.Id" />
+
+                                <label for="isAccepted">Оценка:</label>
+                                <select name="isAccepted" id="isAccepted">
+                                    <option value="true">Зачёт</option>
+                                    <option value="false">Незачёт</option>
+                                </select>
+
+                                <label for="notes">Заметки:</label>
+                                <textarea name="notes" id="notes">@solution.AdminNotes</textarea>
+
+                                <button type="submit">Сохранить оценку и заметки</button>
+                            </form>
+                        }
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        if (Model.Task.DeadlineDate < DateTime.Now)
+        {
+            <p>Больше решений никто не прикрепит, потому что срок выполнения уже истёк.</p>
+        }
+        else if (Context.Session.GetInt32("IsAdmin") != 1)
+        {
+            <p>Будьте первыми, кто решит это задание.</p>
+        }
+        else
+        {
+            <p>Пока не было добавлено ни одного решения.</p>
+        }
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".solution-author").click(function () {
+            $(this).next(".solution-details").toggle();
+        });
+    });
+</script>
+
+@functions {
+    public string GetAcceptedStatus(bool isAccepted)
+    {
+        return isAccepted ? "Зачёт" : "Незачёт";
+    }
+}

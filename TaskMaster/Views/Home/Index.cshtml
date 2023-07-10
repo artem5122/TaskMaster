@@ -1,0 +1,29 @@
+﻿
+<h1>Текущие задания</h1>
+<div class="row mt-5 mb-2">
+
+    @{
+        foreach (TaskMaster.Data.Models.Task task in Model.AllTasks)
+        {
+            if (task.DeadlineDate >= DateTime.Now)
+            {
+                @Html.Partial("AllTasks", task)
+            }
+        }
+    }
+</div>
+<br />
+<br />
+<h1>Прошедшие задания</h1>
+<div class="row mt-5 mb-2">
+
+    @{
+        foreach (TaskMaster.Data.Models.Task task in Model.AllTasks)
+        {
+            if (task.DeadlineDate < DateTime.Now)
+            {
+                @Html.Partial("AllTasks", task)
+            }
+        }
+    }
+</div>

@@ -1,0 +1,83 @@
+{
+  "ContentRoots": [
+    "/src/TaskMaster/wwwroot/"
+  ],
+  "Root": {
+    "Children": {
+      "css": {
+        "Children": {
+          "bootstrap.min.css": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "css/bootstrap.min.css"
+            },
+            "Patterns": null
+          },
+          "style.css": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "css/style.css"
+            },
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      },
+      "img": {
+        "Children": {
+          "admin.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "img/admin.png"
+            },
+            "Patterns": null
+          },
+          "programmer.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "img/programmer.png"
+            },
+            "Patterns": null
+          },
+          "TasksPicture.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "img/TasksPicture.jpg"
+            },
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      },
+      "js": {
+        "Children": {
+          "bootstrap.min.js": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "js/bootstrap.min.js"
+            },
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      }
+    },
+    "Asset": null,
+    "Patterns": [
+      {
+        "ContentRootIndex": 0,
+        "Pattern": "**",
+        "Depth": 0
+      }
+    ]
+  }
+}

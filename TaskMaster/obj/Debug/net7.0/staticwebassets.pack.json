@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Артем\\source\\repos\\TaskMaster\\TaskMaster\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Артем\\source\\repos\\TaskMaster\\TaskMaster\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "C:\\Users\\Артем\\source\\repos\\TaskMaster\\TaskMaster\\wwwroot\\img\\TasksPicture.jpg",
+      "PackagePath": "staticwebassets\\img\\TasksPicture.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Артем\\source\\repos\\TaskMaster\\TaskMaster\\wwwroot\\img\\admin.png",
+      "PackagePath": "staticwebassets\\img\\admin.png"
+    },
+    {
+      "Id": "C:\\Users\\Артем\\source\\repos\\TaskMaster\\TaskMaster\\wwwroot\\img\\programmer.png",
+      "PackagePath": "staticwebassets\\img\\programmer.png"
+    },
+    {
+      "Id": "C:\\Users\\Артем\\source\\repos\\TaskMaster\\TaskMaster\\wwwroot\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.TaskMaster.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.TaskMaster.props",
+      "PackagePath": "build\\TaskMaster.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.TaskMaster.props",
+      "PackagePath": "buildMultiTargeting\\TaskMaster.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.TaskMaster.props",
+      "PackagePath": "buildTransitive\\TaskMaster.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
